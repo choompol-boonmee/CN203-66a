@@ -13,9 +13,9 @@ fn pivot(v: &mut Vec<i32>) -> usize {
 }
 
 fn main() {
-    let mut v: Vec<i32> = vec![2, 1, 5, 8];
+    let mut v: Vec<i32> = vec![4, 3, 4, 3, 8, 5, 1, 5, 8, 5, 8];
     println!("{:?}", v);
-    pivot(&mut v);
-    println!("{:?}", v);
+    let p = pivot(&mut v);
+    println!("{:?} [{}]", v, p);
 }
 ```
