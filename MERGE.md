@@ -1,4 +1,5 @@
-
+MERGE
+```
 fn merge1(mut v: Vec<i32>) -> Vec<i32> {
     if v.len() <= 1 {
         return v;
@@ -46,3 +47,5 @@ fn main() {
     v = merge1(v);
     println!("{:?}", v);
 }
+```
+
