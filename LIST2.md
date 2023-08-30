@@ -1,3 +1,5 @@
+LIST2
+```
 #[derive(Debug)]
 pub struct List<T>(Option<(T, Box<List<T>>)>);
 
@@ -23,3 +25,4 @@ fn main() {
     ll.add1(8);
     println!("{:?}", &ll);
 }
+```
