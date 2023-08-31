@@ -3,8 +3,8 @@
 
 LIVE: <https://youtube.com/live/ea2DJH9rZ-s?feature=share>
 
-- [LIST](LIST0.md)
-- [LIST2](LIST2.md)
+- [LIST](src/LIST0.md)
+- [LIST2](src/LIST2.md)
 - [BUBBLE1](BUBBLE1.md)
 - [BUBBLE2](BUBBLE2.md)
 - [SPLIT_OFF](SPLIT_OFF.md)
