@@ -12,3 +12,6 @@ LIVE: <https://youtube.com/live/ea2DJH9rZ-s?feature=share>
 - [PIVOT2](src/PIVOT2.md)
 - [QUICK](src/QUICK.md)
 - [MERGE](src/MERGE.md)
+
+- [GIT-RUST-ALGORITHM](https://github.com/PacktPublishing/Hands-On-Data-Structures-and-Algorithms-in-Rust/tree/master)
+- 
