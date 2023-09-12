@@ -1,4 +1,7 @@
-  use std::fmt::Debug;
+BINTREE
+
+```
+use std::fmt::Debug;
 #[derive(Debug)]
 pub struct BinTree<T>(Option<Box<BinData<T>>>);
 
@@ -97,4 +100,6 @@ fn main(){
     t.rot_left();
     t.lfirst_print(0);
 }
+
+```
 
