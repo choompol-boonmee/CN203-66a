@@ -5,7 +5,6 @@ use std::fmt::Debug;
 #[derive(Debug)]
 pub struct BinTree<T>(Option<Box<BinData<T>>>);
 
-
 #[derive(Debug)]
 pub struct BinData<T> {
     //consider key value pair
@@ -14,51 +13,9 @@ pub struct BinData<T> {
     right:BinTree<T>,
 }
 
-impl<T> BinData<T>{
-    pub fn rot_left(mut self)->Box<Self>{
-        let mut res = match self.right.0.take(){
-            Some(res)=>res,
-            None=>return Box::new(self),
-        };
-        self.right = BinTree(res.left.0.take());
-        res.left = BinTree(Some(Box::new(self)));
-        res
-    }
-    pub fn rot_right(mut self)->Box<Self>{
-        let mut res = match self.left.0.take(){
-            Some(res)=>res,
-            None=>return Box::new(self),
-        };
-        self.left = BinTree(res.right.0.take());
-        res.right = BinTree(Some(Box::new(self)));
-        res
-    }
-}
-
 impl<T> BinTree<T>{
     pub fn new()->Self{
         BinTree(None)
-    }
-
-    pub fn rot_left(&mut self){
-        self.0 = self.0.take().map(|v|v.rot_left())
-    }
-    pub fn rot_right(&mut self){
-        self.0 = self.0.take().map(|v|v.rot_right())
-    }
-}
-
-impl<T:Debug> BinTree<T>{
-    pub fn lfirst_print(&self,depth:i32){
-        if let Some(ref bd)=self.0{
-                bd.left.lfirst_print(depth+1);
-                let mut spc = String::new();
-                for _ in 0..depth{
-                    spc.push(' ');
-                }
-                println!("{}{:?}",spc,bd.data);
-                bd.right.lfirst_print(depth+1);
-        }
     }
 }
 
@@ -75,11 +32,8 @@ impl<T:PartialOrd> BinTree<T>{
             }
             None=>self.0 = Some(Box::new(BinData{data,left:BinTree::new(),right:BinTree::new()})),
         }
-
     }
-
 }
-
 
 
 fn main(){
@@ -94,12 +48,24 @@ fn main(){
     t.add_sorted(0);
     t.add_sorted(20);
    
-    //println!("tree = {:?}",t);
-    t.lfirst_print(0);
-    println!(" -- rotleft -- ");
-    t.rot_left();
     t.lfirst_print(0);
 }
+
+impl<T:Debug> BinTree<T>{
+    pub fn lfirst_print(&self,depth:i32){
+        if let Some(ref bd)=self.0{
+                bd.left.lfirst_print(depth+1);
+                let mut spc = String::new();
+                for _ in 0..depth{
+                    spc.push(' ');
+                    spc.push(' ');
+                }
+                println!("{}{:?}",spc,bd.data);
+                bd.right.lfirst_print(depth+1);
+        }
+    }
+}
+
 
 ```
 
