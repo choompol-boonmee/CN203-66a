@@ -15,3 +15,10 @@ LIVE: <https://youtube.com/live/ea2DJH9rZ-s?feature=share>
 
 - [GIT-RUST-ALGORITHM](https://github.com/PacktPublishing/Hands-On-Data-Structures-and-Algorithms-in-Rust/tree/master)
 - 
+
+## 2023-09-13
+- [QUICK](src/QUICK.md)
+- [BINTREE](src/BINTREE.md)
+- [BINTREE](src/BINTREE2.md)
+- [Double Linked List](src/DBL.md)
+
