@@ -19,6 +19,5 @@ LIVE: <https://youtube.com/live/ea2DJH9rZ-s?feature=share>
 ## 2023-09-13
 - [QUICK](src/QUICK.md)
 - [BINTREE](src/BINTREE.md)
-- [BINTREE](src/BINTREE2.md)
 - [Double Linked List](src/DBL.md)
 
