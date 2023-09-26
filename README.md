@@ -21,3 +21,9 @@ LIVE: <https://youtube.com/live/ea2DJH9rZ-s?feature=share>
 - [BINTREE](src/BINTREE.md)
 - [Double Linked List](src/DBL.md)
 
+## 2023-09-27
+- [HASH](src/HASH.md)
+- [HASHMAP](src/HASHMAP.md)
+- [GRAPH](src/GRAPH.md)
+
+ 
