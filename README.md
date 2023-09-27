@@ -25,5 +25,6 @@ LIVE: <https://youtube.com/live/ea2DJH9rZ-s?feature=share>
 - [HASH](src/HASH.md)
 - [HASHMAP](src/HASHMAP.md)
 - [GRAPH](src/GRAPH.md)
+- [GRAPH2](src/GRAPH2.md)
 
  
