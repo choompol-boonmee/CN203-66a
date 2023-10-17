@@ -1,6 +1,8 @@
 # CN203-66a
 <https://ideone.com>
 
+<https://play.rust-lang.org/>
+
 LIVE: <https://youtube.com/live/ea2DJH9rZ-s?feature=share>
 
 - [LIST](src/LIST0.md)
