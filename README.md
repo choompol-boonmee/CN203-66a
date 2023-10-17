@@ -14,7 +14,7 @@ LIVE: <https://youtube.com/live/ea2DJH9rZ-s?feature=share>
 - [MERGE](src/MERGE.md)
 
 - [GIT-RUST-ALGORITHM](https://github.com/PacktPublishing/Hands-On-Data-Structures-and-Algorithms-in-Rust/tree/master)
-- 
+- [GRAPH3.md](src/GRAPH3.md)
 
 ## 2023-09-13
 - [QUICK](src/QUICK.md)
