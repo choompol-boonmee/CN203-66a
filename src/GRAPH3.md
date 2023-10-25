@@ -8,107 +8,9 @@ use std::fmt;
 use std::hash::Hash;
 use std::rc::Rc;
 
-#[derive(Debug)]
-#[allow(dead_code)]
-pub struct GraphErr {
-    mess: String,
-}
-
-impl GraphErr {
-    pub fn new(s: &str) -> Self {
-        GraphErr {
-            mess: s.to_string(),
-        }
-    }
-}
-
-pub trait Weighted {
-    fn weight(&self) -> i32;
-}
-
-impl Weighted for i32 {
-    fn weight(&self) -> i32 {
-        *self
-    }
-}
-
-impl Weighted for () {
-    fn weight(&self) -> i32 {
-        return 1;
-    }
-}
-
-//MapPointer
-#[derive(Debug)]
-pub struct Graph<T, E, ID: Clone + Hash + Eq> {
-    data: HashMap<ID, (T, Vec<ID>)>,
-    edges: HashMap<ID, (E, ID, ID)>,
-}
-
-impl<T, E, ID: Clone + Hash + Eq> Graph<T, E, ID> {
-    pub fn new() -> Self {
-        Graph {
-            data: HashMap::new(),
-            edges: HashMap::new(),
-        }
-    }
-
-    pub fn add_node(&mut self, id: ID, dt: T) {
-        self.data.insert(id, (dt, Vec::new()));
-    }
-
-    pub fn add_edge(&mut self, ed_id: ID, from: ID, to: ID, ed: E) -> Result<(), GraphErr> {
-        if !self.data.contains_key(&from) {
-            //check before setting.
-            return Err(GraphErr::new("from not in nodes"));
-        }
-        if let Some(ref mut dt) = self.data.get_mut(&to) {
-            self.edges.insert(ed_id.clone(), (ed, from.clone(), to));
-            dt.1.push(ed_id.clone());
-        } else {
-            return Err(GraphErr::new("to not in nodes"));
-        }
-        self.data.get_mut(&from).unwrap().1.push(ed_id);
-        Ok(())
-    }
-}
-
-#[derive(Debug)]
-pub struct Route<ID> {
-    pos: ID,
-    path: Option<Rc<Route<ID>>>,
-    len: i32,
-}
-
-impl<ID: Eq> Route<ID> {
-    pub fn start_rc(pos: ID) -> Rc<Self> {
-        Rc::new(Route {
-            pos,
-            path: None,
-            len: 0,
-        })
-    }
-
-    pub fn contains(&self, id: &ID) -> bool {
-        if self.pos == *id {
-            return true;
-        }
-        match self.path {
-            Some(ref p) => p.contains(id),
-            None => false,
-        }
-    }
-}
-
-impl<ID: std::fmt::Debug> fmt::Display for Route<ID> {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        if let Some(ref p) = self.path {
-            write!(f, "{}-{}-", p, self.len)?;
-        }
-        write!(f, "{:?}", self.pos)
-    }
-}
-
+// ========================================================
+// Graph Algorithm
+// ========================================================
 impl<T, E: Weighted, ID: Clone + Hash + Eq + fmt::Debug> Graph<T, E, ID> {
     pub fn shortest_path(&self, from: ID, to: ID) -> Option<Rc<Route<ID>>> {
         self.shortest_path_r(Route::start_rc(from), to)
@@ -235,6 +137,9 @@ impl<T, E: Weighted, ID: Clone + Hash + Eq + fmt::Debug> Graph<T, E, ID> {
     }
 }
 
+// =====================================================
+// MAIN PROGRAM
+// =====================================================
 fn main() -> Result<(), GraphErr> {
     let mut g = Graph::new();
     for x in vec!['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'] {
@@ -265,4 +170,116 @@ fn main() -> Result<(), GraphErr> {
     println!("iter_saleseman = {}", g.iter_salesman('A').unwrap());
     Ok(())
 }
+
+// ======================================
+//            Route Basic
+// ======================================
+#[derive(Debug)]
+pub struct Route<ID> {
+    pos: ID,
+    path: Option<Rc<Route<ID>>>,
+    len: i32,
+}
+
+impl<ID: Eq> Route<ID> {
+    pub fn start_rc(pos: ID) -> Rc<Self> {
+        Rc::new(Route {
+            pos,
+            path: None,
+            len: 0,
+        })
+    }
+
+    pub fn contains(&self, id: &ID) -> bool {
+        if self.pos == *id {
+            return true;
+        }
+        match self.path {
+            Some(ref p) => p.contains(id),
+            None => false,
+        }
+    }
+}
+
+impl<ID: std::fmt::Debug> fmt::Display for Route<ID> {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        if let Some(ref p) = self.path {
+            write!(f, "{}-{}-", p, self.len)?;
+        }
+        write!(f, "{:?}", self.pos)
+    }
+}
+
+// ===============================================
+//            Graph Basic
+// ===============================================
+//MapPointer
+#[derive(Debug)]
+pub struct Graph<T, E, ID: Clone + Hash + Eq> {
+    data: HashMap<ID, (T, Vec<ID>)>,
+    edges: HashMap<ID, (E, ID, ID)>,
+}
+
+impl<T, E, ID: Clone + Hash + Eq> Graph<T, E, ID> {
+    pub fn new() -> Self {
+        Graph {
+            data: HashMap::new(),
+            edges: HashMap::new(),
+        }
+    }
+
+    pub fn add_node(&mut self, id: ID, dt: T) {
+        self.data.insert(id, (dt, Vec::new()));
+    }
+
+    pub fn add_edge(&mut self, ed_id: ID, from: ID, to: ID, ed: E) -> Result<(), GraphErr> {
+        if !self.data.contains_key(&from) {
+            //check before setting.
+            return Err(GraphErr::new("from not in nodes"));
+        }
+        if let Some(ref mut dt) = self.data.get_mut(&to) {
+            self.edges.insert(ed_id.clone(), (ed, from.clone(), to));
+            dt.1.push(ed_id.clone());
+        } else {
+            return Err(GraphErr::new("to not in nodes"));
+        }
+        self.data.get_mut(&from).unwrap().1.push(ed_id);
+        Ok(())
+    }
+}
+
+// ===============================================
+//            Graph Extra
+// ===============================================
+
+#[derive(Debug)]
+#[allow(dead_code)]
+pub struct GraphErr {
+    mess: String,
+}
+
+impl GraphErr {
+    pub fn new(s: &str) -> Self {
+        GraphErr {
+            mess: s.to_string(),
+        }
+    }
+}
+
+pub trait Weighted {
+    fn weight(&self) -> i32;
+}
+
+impl Weighted for i32 {
+    fn weight(&self) -> i32 {
+        *self
+    }
+}
+
+impl Weighted for () {
+    fn weight(&self) -> i32 {
+        return 1;
+    }
+}
+
 ```
