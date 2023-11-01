@@ -3,6 +3,10 @@
 
 <https://play.rust-lang.org/>
 
+LIST OF ALGORITHS
+
+<https://github.com/alexfertel/rust-algorithms>
+
 LIVE: <https://youtube.com/live/ea2DJH9rZ-s?feature=share>
 
 - [LIST](src/LIST0.md)
