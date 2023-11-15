@@ -1,10 +1,8 @@
 # CN203-66a
 
-<https://play.rust-lang.org/>
+PLAY GROUND: <https://play.rust-lang.org/>
 
-LIST OF ALGORITHS
-
-<https://github.com/choompol-boonmee/rust-algorithms>
+RUST ALGORITHS : <https://github.com/choompol-boonmee/rust-algorithms>
 
 LIVE: <https://youtube.com/live/ea2DJH9rZ-s?feature=share>
 
