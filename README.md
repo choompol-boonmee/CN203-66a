@@ -1,11 +1,10 @@
 # CN203-66a
-<https://ideone.com>
 
 <https://play.rust-lang.org/>
 
 LIST OF ALGORITHS
 
-<https://github.com/alexfertel/rust-algorithms>
+<https://github.com/choompol-boonmee/rust-algorithms>
 
 LIVE: <https://youtube.com/live/ea2DJH9rZ-s?feature=share>
 
